@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <title><%= title %></title>
+        <link rel="stylesheet" href="/css/beamer.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Rajdhani:wght@400;700&family=Freckle+Face&family=Karla:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <!-- BACKGROUNDS -->
+        <div class="backgroundContainer empty"></div>
+        <div class="namePlateContainer fullScreen"><div class="namePlate"></div></div>
+
+        <!-- CHATMESSAGES -->
+        <div class="beamerBigMessageContainer hidden">
+            <img src="" class="beamerProfilePicture" alt="">
+            <div class="beamerBigMessageRightContainer">
+                <div class="chatMessageInfo">
+                    <p class="beamerUserName"></p>
+                    <p class="beamerTimeStamp"></p>
+                </div>
+                <p class="beamerMessageContainer"></p>
+            </div>
+        </div>
+
+        <!-- ALERTS -->
+        <div class="beamerAlertsContainer hidden">
+            <h2 class="beamerAlertType"></h2>
+            <div class="alertContainer">
+                <img src="" class="beamerProfilePicture">
+                <div class="alertTexts">
+                    <p class="beamerUserName"></p>
+                    <div class="rowSubInfo"></div>
+                    <p class="beamerAlertSubMessage"></p>
+                </div>
+            </div>
+        </div>
+        
+        <script src="/js/websocket.js"></script>
+        <script src="/js/functions.js"></script>
+    </body>
+</html>

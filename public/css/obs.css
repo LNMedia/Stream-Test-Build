@@ -1,0 +1,636 @@
+body {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin:0;
+    padding: 0;
+}
+body.apixoffiziell {
+    font-family: 'Rajdhani', sans-serif;
+}
+body.pixelundpils {
+    font-family: 'Karla', sans-serif;
+}
+/* OVERLAY FOR START/PAUSE... */
+.overlayContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 99.9%;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    pointer-events: none;
+    z-index: 1000;
+}
+.overlayContainer.displayNone {
+    animation: displayNone 1s ease-in-out forwards;
+}
+.backgroundContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+.backgroundContainer::before {
+    content: "";
+    position: absolute;
+    top: -1%;
+    left: -1%;
+    width: 102%;
+    height: 102%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: blur(5px) brightness(0.5);
+}
+body.apixoffiziell .backgroundContainer::before {
+    background-image: url('/img/backgrounds/wallpaper_apix.png');
+}
+body.pixelundpils .backgroundContainer::before {
+    background-image: url('/img/backgrounds/wallpaper_pp.png');
+}
+/* NAMEPLATE CONTAINER */
+.overlayColumn {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    z-index: 0;
+    height: 99.8%;
+    width: 95%;
+    font-family: 'Rajdhani', sans-serif;
+}
+.namePlateContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.namePlate {
+    font-family: 'Black Ops One', sans-serif;
+    color: white;
+    font-size: 11vw;
+    margin: 0;
+    padding: 0;
+    animation: rotateText 5s linear infinite;
+}
+.overlayRow {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 99%;
+    margin-top: -45px;
+    gap: 50px;
+}
+.stateNameContainer,
+.countDownContainer {
+    position: relative;
+    display: flex;
+    margin: -25px 0 15px 0;
+}
+.stateName,
+.countDown {
+    position: relative;
+    transform: translateY(12.5%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    font-size: 5vw;
+    color: white;
+}
+/* GAMESHOW CONTAINER */
+.gameShow {
+    position: relative;
+    display: none;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    top: 0;
+    gap: 50px;
+    width: 99%;
+    flex: 1;
+    overflow: visible;
+}
+.gameShow.shown {
+    display: flex;
+}
+.todayThema {
+    position: absolute;
+    display: flex;
+    justify-content: flex-start;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-size: 35px;
+    margin: 0 0 -10px 50px;
+}
+.gameImage {
+    position: relative;
+    margin: 25px 0 0 25px;
+    width: 325px;
+    height: 90%;
+    background: transparent;
+    background-position: center center;
+    background-size: cover;
+    border-radius: 25px;
+    filter: drop-shadow(0px 0px 10px white);
+}
+.gameName {
+    position: relative;
+    color: white;
+    font-size: 4vw;
+    font-family: 'Black Ops One', sans-serif;
+    width: 50%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+/* NAMEPLATE, STATENAME TEXTS */
+body.apixoffiziell .namePlate::before {
+    content: "APiXoffiziell";
+    text-shadow: 2px 2px 4px rgba(150, 0, 0, 0.5),
+                0 0 10px rgba(150, 0, 0, 0.5),
+                0 0 20px rgba(150, 0, 0, 0.5);
+}
+body.pixelundpils .namePlate::before {
+    content: "Pixel & Pils";
+    text-shadow: 2px 2px 4px rgba(250, 250, 250, 0.5),
+                0 0 10px rgba(250, 250, 250, 0.5),
+                0 0 20px rgba(250, 250, 250, 0.5);
+}
+.stateName.starting::before {
+    content: "Starting Soon";
+    text-shadow: 2px 2px 4px rgba(150, 0, 0, 0.5),
+                0 0 10px rgba(150, 0, 0, 0.5),
+                0 0 20px rgba(150, 0, 0, 0.5);
+}
+.stateName.pause::before {
+    content: "Be Right Back";
+    text-shadow: 2px 2px 4px rgba(250, 250, 250, 0.5),
+                0 0 10px rgba(250, 250, 250, 0.5),
+                0 0 20px rgba(250, 250, 250, 0.5);
+}
+.stateName.ending::before {
+    content: "Ending Soon";
+    text-shadow: 2px 2px 4px rgba(250, 250, 250, 0.5),
+                0 0 10px rgba(250, 250, 250, 0.5),
+                0 0 20px rgba(250, 250, 250, 0.5);
+}
+@keyframes rotateText {
+    0%,100% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(90deg);
+    }
+}
+@keyframes displayNone {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+/* STREAMBOOST OVERLAY */
+.streamBoost {
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    right: -35px;
+    bottom: 200px;
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0) !important;
+    overflow: hidden;
+    opacity: 1;
+    border-radius: 10px;
+    border: dashed 2px white;
+    scale: 0.6;
+    z-index: 1000000;
+}
+body.apixoffiziell .streamBoost {
+    display: flex;
+}
+/* MUSICPLAYER */
+.musicShowCase {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    bottom: 0;
+    right: 25px;
+    width: 300px;
+    height: 240px;
+    overflow: visible;
+    z-index: 200000;
+}
+.wishList,
+.activeSong {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.wishList {
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-end;
+    max-height: 110px;
+    margin-top: 10px;
+    margin-left: -20px;
+    margin-bottom: -10px;
+    color: white;
+    overflow: visible;
+    white-space: nowrap;
+}
+.activeSong {
+    height: 75px !important;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    bottom: 5px;
+    right: 0 !important;
+    overflow: visible;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.cdOverlay {
+    width: 65px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    box-shadow: inset 0 0 10px rgba(255,255,255,0.4),
+                0 0 20px rgba(0,0,0,0.2);
+    position: relative;
+    animation: rotateCD 5s linear infinite;
+    background-size: contain;
+    background-position: center;
+}
+.cdOverlay::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    aspect-ratio: 1 / 1;
+    background: #333;
+    border-radius: 50%;
+    box-shadow: inset 0 0 5px #000;
+}
+.songInfo {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    flex: 1;
+    margin-right: 10px;
+    width: calc(100% - 65px);
+    color: white;
+    text-wrap: none;
+    font-family: 'Rajdhani', sans-serif;
+}
+/* CHAT OVERLAY */
+.chatOverlay {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    left: 10px;
+    width: 250px;
+    height: calc(95% - 20px);
+    border-radius: 15px;
+    font-family: 'Rajdhani', sans-serif;
+    background: rgba(0,0,0,0.6);
+    overflow: hidden;
+    padding: 10px;
+    z-index: 100000;
+}
+.chatOverlay.shown {
+    display: flex;
+}
+.chatHeader {
+    position: relative;
+    color: white;
+    font-size: 25px;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 5px;
+    border-bottom: dotted 2px white;
+}
+.chatBox {
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    flex: 1;
+    gap: 10px;
+    margin-top: 10px;
+}
+.chatBox li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+}
+.chatBox li img {
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0;
+    border-radius: 50%;
+}
+.chatContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+.chatContent h4 {
+    margin: -5px 0 -5px 0;
+    font-size: 1rem;
+    white-space: nowrap;
+}
+.chatContent p {
+    margin: 0;
+    color: white;
+    text-align: justify;
+}
+/* ALERT CONTAINER */
+.alertMainContainer {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000000;
+}
+.alertMainContainer.shown {
+    display: flex;
+    animation: showAlert 1s ease forwards,
+               hideAlert 1s ease 10s forwards;
+}
+.alertHeader {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Black Ops One', sans-serif;
+    width: 750px;
+    height: 100px;
+    font-size: 80px;
+    margin: 0;
+    padding: 10px 0;
+    border-radius: 20px 20px 0 0;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.6);
+    border: 2px solid transparent;
+    border-image: linear-gradient(45deg, #ff004c, #6b00ff, #00e0ff);
+    border-image-slice: 1;
+    background: rgba(0,0,0,0.6);
+    box-shadow: 0 0 20px rgba(255, 0, 76, 0.3);
+    transition: all 0.3s ease;
+}
+.alertHeader span {
+    display: inline-block;
+    width: 45px;
+    animation: wave 1.5s infinite ease-in-out;
+    transform-origin: bottom center;
+}
+.alertContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 750px;
+    padding: 10px 25px;
+    gap: 30px;
+    background: rgba(20, 20, 20, 0.8);
+    border: 2px solid transparent;
+    border-image: linear-gradient(to right, #ff004c, #6b00ff, #00e0ff);
+    border-image-slice: 1;
+    border-radius: 0 0 20px 20px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    transition: all 0.4s ease;
+}
+.alertContainer .userImage {
+    height: 150px;
+    width: 150px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+.alertUserData {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex: 1;
+}
+.alertContainer .userName {
+    position: relative;
+    font-size: 42px;
+    font-family: 'Rajdhani', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    margin-top: -10px;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(0, 123, 255, 0.6);
+}
+.timeStamp {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    margin: 0;
+    padding: 0;
+    font-family: 'Rajdhani', sans-serif;
+}
+.alertContainer .alertData {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 90%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.alertContainer .alertData li {
+    font-size: 24px;
+    font-family: 'Rajdhani', sans-serif;
+    margin-bottom: 5px;
+    color: #fff;
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
+}
+@keyframes showAlert {
+    from {
+        bottom: -100%;
+        opacity: 0;
+    }
+    to {
+        bottom: 0;
+        opacity: 1;
+    }
+}
+@keyframes hideAlert {
+    from {
+        bottom: 0;
+        opacity: 1;
+    }
+    to {
+        bottom: -100%;
+        opacity: 0;
+    }
+}
+@keyframes wave {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+/* OVERLAYS (STYLES FOR ALL) */
+.overlayAPIX,
+.overlayPP {
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+.overlayAPIXJC,
+.overlayAPIXGMG,
+.overlayAPIXMSC
+.overlayPPPC,
+.overlayPPGMG {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+.overlayAPIX.shown,
+.overlayPP.shown,
+.overlayAPIXJC.shown,
+.overlayAPIXGMG.shown,
+.overlayAPIXMSC.shown,
+.overlayPPPC.shown,
+.overlayPPGMG.shown {
+    display: flex;
+}
+/* APIXOFFIZIELL OVERLAY */
+.overlayAPIX::before {
+    content: "";
+    position: absolute;
+    width: 110%;
+    height: 110%;
+    top: -5%;
+    left: -5%;
+    background: url('/img/backgrounds/wallpaper_apix.png');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.5) blur(5px);
+}
+.jcHeader {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - 100px);
+    height: 125px;
+    padding: 10px 50px;
+    gap: 10%;
+    overflow: hidden;
+    z-index: 100000;
+}
+.logoContainer {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+    gap: 10%;
+}
+.jcHeader .logoContainer img {
+    position: relative;
+    height: 100%;
+    animation: rotateImages 10s linear infinite;
+}
+.jcHeader .logoContainer img:nth-child(1) {
+    animation-delay: 0s;
+}
+.jcHeader .logoContainer img:nth-child(2) {
+    animation-delay: 1s;
+}
+.jcHeader .logoContainer img:nth-child(3) {
+    animation-delay: 2s;
+}
+@keyframes rotateImages {
+    0%,100% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(360deg);
+    }
+}
+@keyframes rotateCD {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+
+/* JUSTCHATTING */
+.jcGreenScreen {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: yellowgreen;
+    width: 55%;
+    aspect-ratio: 16 / 9;
+    border-radius: 50px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-47%,-45%);
+}
+/* GAMING */
+.gmgGameGreenScreen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: yellowgreen;
+    border-radius: 5px;
+}

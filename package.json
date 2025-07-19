@@ -1,0 +1,26 @@
+{
+    "name": "streaming",
+    "version": "1.0.0",
+    "description": "Streaming server for video and audio content using WebSockets and Express.js",
+    "main": "streaming.js",
+    "scripts": {
+        "start": "node streaming.js",
+        "dev": "nodemon streaming.js"
+    },
+    "author": "Andreas Reimann",
+    "license": "MIT",
+    "dependencies": {
+        "axios": "^1.9.0",
+        "browser-sync": "^3.0.4",
+        "dotenv": "^16.5.0",
+        "ejs": "^3.1.10",
+        "express": "^4.19.2",
+        "querystring": "^0.2.1",
+        "spotify-web-api-node": "^5.0.2",
+        "streaming": "file:",
+        "twitch-js": "^2.0.0-beta.45"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.0"
+    }
+}

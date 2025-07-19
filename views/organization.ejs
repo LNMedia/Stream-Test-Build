@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <!-- Grundlegende Metadaten -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Befehlsliste</title>
+        <meta name="description" content="Eine kleine Seite mit Befehlen für den Stream von APiXoffiziell.">
+        <meta name="keywords" content="Befehlsliste, Stream, Chat">
+        <meta name="author" content="Andi">
+        <meta name="robots" content="index, follow">
+    
+        <!-- Mobile Optimierung -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+        <!-- Open Graph (Facebook / Social Media Vorschau) -->
+        <meta property="og:title" content="Befehlsliste">
+        <meta property="og:description" content="Eine kleine Seite mit Befehlen für den Stream von APiXoffiziell.">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://areimann.de/">
+    
+        <!-- Twitter Cards -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Befehlsliste">
+        <meta name="twitter:description" content="Eine kleine Seite mit Befehlen für den Stream von APiXoffiziell.">
+    
+        <!-- Favicons -->
+        <link rel="icon" type="image/png" href="/img/favicon-96x96.png?v=<%= Date.now() %>" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/img/favicon.svg?v=<%= Date.now() %>" />
+        <link rel="shortcut icon" href="/img/favicon.ico?v=<%= Date.now() %>" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png?v=<%= Date.now() %>" />
+        <meta name="apple-mobile-web-app-title" content="Befehlsliste APiXoffiziell" />
+        <link rel="manifest" href="/img/site.webmanifest?v=<%= Date.now() %>" />
+    
+        <!-- CSS -->
+        <link rel="stylesheet" href="/css/organization.css?v=<%= Date.now() %>" />
+    
+        <!-- Google Fonts optimiert -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Rajdhani:wght@400;700&family=Freckle+Face&family=Karla:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <!-- BACKGROUND -->
+        <div class="backgroundContainer"></div>
+        <div id="loader">
+            <div class="spinner"></div>
+        </div>
+        <!--HEADERMENU-->
+        <header>
+            <div class="nameContainer"><h1>APiX</h1><h2>offiziell</h2></div>
+            <div class="pageContainer"><h1>Befehle</h1></div>
+            <nav>
+                <ul class="mainMenu">
+                    <li class="point">Alle Trigger</li>
+                    <li class="point" data-perm="everyone">Jeder
+                        <span></span>
+                        <ul class="subMenu" data-perm="everyone">
+                            <li class="subPoint" data-perm="everyone" data-cat="main">Hauptbefehle</li>
+                            <li class="subPoint" data-perm="everyone" data-cat="social">Social Media</li>
+                            <li class="subPoint" data-perm="everyone" data-cat="rewards">Kanalpunkte</li>
+                        </ul>
+                    </li>
+                    <li class="point" data-perm="follower">Follower
+                        <span></span>
+                        <ul class="subMenu"" data-perm="follower">
+                            <li class="subPoint" data-perm="follower" data-cat="main">Hauptbefehle</li>
+                            <li class="subPoint" data-perm="follower" data-cat="stats">Statistiken</li>
+                            <li class="subPoint" data-perm="follower" data-cat="support">Unterstützen</li>
+                            <li class="subPoint" data-perm="follower" data-cat="eco">Währungssystem</li>
+                            <li class="subPoint" data-perm="follower" data-cat="ecowip">Währungssystem (WIP)</li>
+                            <li class="subPoint" data-perm="follower" data-cat="rewards">Kanalpunkte</li>
+                        </ul>
+                    </li>
+                    <li class="point" data-perm="sub">Abonnenten
+                        <span></span>
+                        <ul class="subMenu" data-perm="sub">
+                            <li class="subPoint" data-perm="sub" data-cat="main">Hauptbefehle</li>
+                        </ul>
+                    </li>
+                    <li class="point" data-perm="vip">VIPs (WIP)
+                        <span></span>
+                        <ul class="subMenu" data-perm="vip">
+                            <li class="subPoint" data-perm="vip" data-cat="nothing">Aktuell nichts</li>
+                        </ul>
+                    </li>
+                    <li class="point" data-perm="mod">Moderatoren
+                        <span></span>
+                        <ul class="subMenu" data-perm="mod">
+                            <li class="subPoint" data-perm="mod" data-cat="main">Hauptbefehle</li>
+                            <li class="subPoint" data-perm="mod" data-cat="eco">Währungssystem</li>
+                        </ul>
+                    </li>
+                    <h4>Weitere Links</h4>
+                    <li class="point newpage" onclick="window.open('https://pixelundpils.de/calendar', '_blank')" rel="noopener noreferrer">
+                        Streamplan
+                    </li>
+                </ul>
+            </nav>
+            <div class="menuButton">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </header>
+        <!--COMMANDLIST-->
+        <section class="commandList">
+            <table id="commandsTable">
+                <thead>
+                    <tr data-info="Table Header">
+                        <th>Berechtigung</th><th>Trigger</th><th>Parameter</th><th>Beschreibung</th><th>Kosten</th></tr>
+                    </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+        
+
+        <script>
+            const commands = {
+                everyone: {
+                    main: [
+                        { cmds: "!commands, !befehle", param: "", desc: "Zeigt alle verfügbaren Chatbefehle an.", price: "0 ŁNX" },
+                        { cmds: "!game, !category", param: "", desc: "Zeigt das aktuelle Spiel bzw. die Kategorie des Streams an.", price: "0 ŁNX" },
+                        { cmds: "!streamplan", param: "", desc: "Zeigt den aktuellen Streamplan an.", price: "0 ŁNX" },
+                        { cmds: "!song", param: "", desc: "Zeigt den aktuell laufenden Song an.", price: "0 ŁNX" },
+                        { cmds: "!songlink", param: "", desc: "Gibt den Link zum aktuellen Song aus.", price: "0 ŁNX" },
+                    ],
+                    social: [
+                        { cmds: "!discord", param: "", desc: "Link zum Discord-Server von Pixel & Pils.", price: "0 ŁNX" },
+                        { cmds: "!instagram", param: "", desc: "Link zu meinem Instagram-Profil.", price: "0 ŁNX" },
+                        { cmds: "!youtube", param: "", desc: "Link zu meinem YouTube-Kanal.", price: "0 ŁNX" },
+                        { cmds: "!tiktok", param: "", desc: "Link zu meinem TikTok-Profil.", price: "0 ŁNX" },
+                        { cmds: "!steam", param: "", desc: "Link zu meinem Steam-Profil.", price: "0 ŁNX" },
+                        { cmds: "!pixelundpils, !podcast", param: "", desc: "Link zum Podcast Pixel und Pils.", price: "0 ŁNX" },
+                        { cmds: "!spotify, !andifenrir", param: "", desc: "Link zu meiner Spotify-Musik.", price: "0 ŁNX" },
+                        { cmds: "!playlist", param: "", desc: "Zeigt meine aktuelle Playlist an.", price: "0 ŁNX" },
+                    ],
+                    rewards: [
+                        { cmds: "Musikwunsch", param: "<Artist> <Songname>", desc: "Wünsche dir einen Song im Stream", price: "250 Fen'Var (Wolfskraft)" },
+                    ]
+                },
+                follower: {
+                    main: [
+                        { cmds: "!afk", param: "", desc: "Melde dich kurzzeitig als AFK ab.", price: "0 ŁNX" },
+                        { cmds: "!hey", param: "", desc: "Sag dem Chat freundlich Hallo.", price: "0 ŁNX" },
+                        { cmds: "!lebenseichen, !lebens-eichen", param: "", desc: "Zeig, dass du noch da bist.", price: "0 ŁNX" },
+                        { cmds: "!lurk", param: "", desc: "Gehe in den Lurk-Modus, bleib aber im Stream aktiv.", price: "0 ŁNX" },
+                        { cmds: "!regeln, !rules", param: "", desc: "Zeigt die wichtigsten Chat-Regeln an.", price: "0 ŁNX" },
+                        { cmds: "!clip", param: "", desc: "Erstelle einen Clip des aktuellen Streams.", price: "0 ŁNX" },
+                    ],
+                    stats: [
+                        { cmds: "!accountage", param: "", desc: "Zeigt an, wie alt dein Account ist.", price: "0 ŁNX" },
+                        { cmds: "!chatstats", param: "", desc: "Link zu den Chat-Statistiken aus diesem Stream.", price: "0 ŁNX" },
+                        { cmds: "!followage", param: "", desc: "Zeigt, wie lange du schon folgst.", price: "0 ŁNX" },
+                        { cmds: "!watchtime", param: "", desc: "Zeigt deine gesamte Watchtime an.", price: "0 ŁNX" },
+                    ],
+                    support: [
+                        { cmds: "!donation, !spende", param: "", desc: "Infos, wie du den Stream finanziell unterstützen kannst.", price: "0 ŁNX" },
+                        { cmds: "!partner", param: "", desc: "Zeigt die Partner des Streams an.", price: "0 ŁNX" },
+                        { cmds: "!instantgaming", param: "", desc: "Unterstütze mich über Instant Gaming.", price: "0 ŁNX" },
+                        { cmds: "!streamboost", param: "", desc: "Infos zum Streamboosting.", price: "0 ŁNX" },
+                        { cmds: "!subscribe, !abonnieren", param: "", desc: "Infos zum Abonnieren des Kanals. (Wichtig für Handynutzer!)", price: "0 ŁNX" },
+                    ],
+                    eco: [
+                        { cmds: "!accountstatus", param: "", desc: "Zeigt den Status deines Bankkontos an.", price: "0 ŁNX" },
+                        { cmds: "!guthaben, !balance", param: "", desc: "Zeigt dein Bankguthaben an.", price: "0 ŁNX" },
+                        { cmds: "!money, !bargeld", param: "", desc: "Zeigt dein Bargeld an.", price: "0 ŁNX" },
+                        { cmds: "!transactions", param: "", desc: "Zeigt deine letzten Transaktionen an.", price: "0 ŁNX" },
+                        { cmds: "!überweisung", param: "<Username> <Betrag>", desc: "Überweise Geld an einen anderen User.", price: "0 ŁNX" },
+                        { cmds: "!einzahlen", param: "<Betrag>", desc: "Zahle Geld auf dein Konto ein.", price: "0 ŁNX" },
+                        { cmds: "!auszahlen", param: "<Betrag>", desc: "Zahle Geld von deinem Konto aus.", price: "0 ŁNX" },
+                        { cmds: "!reward", param: "", desc: "Erhalte eine kleine Belohnung.", price: "0 ŁNX" },
+                        { cmds: "!work", param: "", desc: "Gehe arbeiten und verdiene Geld.", price: "0 ŁNX" },
+                        { cmds: "!balancetop", param: "", desc: "Zeigt das Leaderboard der reichsten Spieler.", price: "0 ŁNX" },
+                    ],
+                    ecowip: [
+                        { cmds: "!shop", param: "<'item'/'buy'>", desc: "Öffnet den Itemshop.", price: "0 ŁNX" },
+                        { cmds: "!inventar", param: "optional: <'use'> <Itemname>", desc: "Zeigt dein Inventar an.", price: "0 ŁNX" },
+                        { cmds: "!games", param: "", desc: "Zeigt alle verfügbaren Minispiele an.", price: "0 ŁNX" },
+                        { cmds: "!gameinfo <Gamename>", param: "", desc: "Infos zu einem bestimmten Spiel.", price: "0 ŁNX" },
+                        { cmds: "!startgame <Gamename>", param: "", desc: "Starte ein neues Spiel.", price: "0 ŁNX" },
+                        { cmds: "!opengame <Gamename>", param: "", desc: "Öffnet ein laufendes Spiel.", price: "0 ŁNX" },
+                        { cmds: "!join", param: "", desc: "Tritt einem laufenden Spiel bei.", price: "0 ŁNX" },
+                    ],
+                    rewards: [
+                        { cmds: "Daily Bonus", param: "", desc: "Erhalte 200 ŁNX auf dein Bankkonto.", price: "100 Fen'Var (Wolfskraft)" }
+                    ]
+                },
+                sub: {
+                    main: [
+                        { cmds: "!sr, !srequest", param: "<Artist> <Songname>", desc: "Wünsche dir einen Song, ohne deine hart verdienten Fen'Var (Wolfskraft) ausgeben zu müssen.", price: "0 ŁNX" },
+                        { cmds: "!songqueue", param: "", desc: "Schau nach, welche Songs aktuell in der Wunschliste sind.", price: "0 ŁNX" }
+                    ]
+                },
+                vip: {
+                    nothing: [
+                        { cmds: "Aktuell kein Befehl", param: "", desc: "Keine Befehle für VIPs hinterlegt.", price: "" }
+                    ]
+                },
+                mod: {
+                    main: [
+                        { cmds: "!setgame", param: "<neues Game / neue Kategorie>", desc: "Setzt das aktuelle Spiel/Kategorie.", price: "0 ŁNX" },
+                        { cmds: "!settitle", param: "<neuer Titel>", desc: "Ändert den Streamtitel.", price: "0 ŁNX" },
+                        { cmds: "!clear, !cc", param: "", desc: "Löscht den Chatverlauf.", price: "0 ŁNX" },
+                        { cmds: "!blocksong", param: "", desc: "Blockiert den aktuell gespielten Song.", price: "0 ŁNX" },
+                        { cmds: "!unblocksong", param: "<SongID>", desc: "Hebt den Songblock auf.", price: "0 ŁNX" },
+                        { cmds: "!play", param: "", desc: "Spielt den Song weiter.", price: "0 ŁNX" },
+                        { cmds: "!pause", param: "", desc: "Pausiert den Song.", price: "0 ŁNX" },
+                        { cmds: "!restartsong", param: "", desc: "Startet den Song neu.", price: "0 ŁNX" },
+                        { cmds: "!prevsong", param: "", desc: "Spielt den vorherigen Song.", price: "0 ŁNX" },
+                        { cmds: "!skipsong", param: "", desc: "Überspringt den aktuellen Song.", price: "0 ŁNX" },
+                        { cmds: "!excluded", param: "", desc: "Zeigt blockierte Songs an.", price: "0 ŁNX" },
+                    ],
+                    eco: [
+                        { cmds: "!deletebankaccount", param: "<Username>", desc: "Löscht das Bankkonto eines Users.", price: "0 ŁNX" },
+                        { cmds: "!setaccountbalance", param: "<Username>", desc: "Setzt den Kontostand eines Users.", price: "0 ŁNX" },
+                        { cmds: "!addmoney", param: "<Username>", desc: "Fügt Guthaben zu einem Users hinzu.", price: "0 ŁNX" },
+                        { cmds: "!removemoney", param: "<Username>", desc: "Entfernt Guthaben eines Users.", price: "0 ŁNX" },
+                        { cmds: "!lockaccount", param: "<Username>", desc: "Sperrt das Bankkonto eines Users.", price: "0 ŁNX" },
+                        { cmds: "!unlockaccount", param: "<Username>", desc: "Entsperrt das Bankkonto eines Users.", price: "0 ŁNX" },
+                        { cmds: "!cleartransactions", param: "<Username>", desc: "Löscht alle Transaktionen eines Users.", price: "0 ŁNX" },
+                        { cmds: "!clearrichlist", param: "", desc: "Setzt die Balancetop-Liste zurück.", price: "0 ŁNX" },
+                        { cmds: "!getallaccounts", param: "", desc: "Listet alle Bankkonten auf.", price: "0 ŁNX" }
+                    ]
+                }
+            };
+        
+            const permOrder = ["everyone", "follower", "sub", "vip", "mod"];
+            const permLabels = {
+                everyone: "Jeder",
+                follower: "Follower+",
+                sub: "Abonnenten+",
+                vip: "VIP+",
+                mod: "Moderatoren+"
+            };
+        
+            function buildTable(filterPerm = null, filterCat = null) {
+                const tbody = document.querySelector('#commandsTable tbody');
+                tbody.innerHTML = '';
+
+                permOrder.forEach(perm => {
+                    if (filterPerm && perm !== filterPerm) return;
+
+                    const categories = commands[perm];
+                    let catKeys = Object.keys(categories);
+
+                    // Sortiere so, dass "rewards" immer zuletzt kommt
+                    catKeys.sort((a, b) => {
+                        if (a === 'main') return -1;
+                        if (b === 'main') return 1;
+                        if (a === 'rewards') return 1;
+                        if (b === 'rewards') return -1;
+                        return a.localeCompare(b);
+                    });
+
+                    catKeys.forEach(cat => {
+                        if (filterCat && cat !== filterCat) return;
+
+                        const cmdsArray = categories[cat].sort((a, b) => a.cmds.localeCompare(b.cmds));
+                        cmdsArray.forEach(cmd => {
+                            const tr = document.createElement('tr');
+                            tr.setAttribute('data-perm', perm);
+                            tr.setAttribute('data-cat', cat);
+                            tr.innerHTML = `
+                                <td>${permLabels[perm]}</td>
+                                <td>${cmd.cmds}</td>
+                                <td>${cmd.param}</td>
+                                <td>${cmd.desc}</td>
+                                <td>${cmd.price}</td>
+                            `;
+                            tbody.appendChild(tr);
+                        });
+                    });
+                });
+            }
+        
+            document.addEventListener('DOMContentLoaded', () => {
+                buildTable(); // initial alles laden
+        
+                // Alle Trigger (ohne data-perm)
+                document.querySelector('nav .point:not([data-perm])').addEventListener('click', () => {
+                    buildTable();
+                    toggleMenu();
+                });
+        
+                // Punkte mit nur data-perm (öffnet Submenü, bleibt offen)
+                document.querySelectorAll('nav .mainMenu .point[data-perm]').forEach(point => {
+                    point.addEventListener('click', () => {
+                        const permValue = point.getAttribute('data-perm');
+                        buildTable(permValue); // nur nach perm filtern
+        
+                        // SubMenu verwalten
+                        document.querySelectorAll('nav .subMenu').forEach(menu => {
+                            menu.classList.remove('active');
+                        });
+        
+                        const subMenu = document.querySelector(`nav .subMenu[data-perm="${permValue}"]`);
+                        if (subMenu) {
+                            subMenu.classList.add('active');
+                        }
+                        // Menü bleibt bewusst offen, kein toggleMenu() hier
+                    });
+                });
+        
+                // Subpunkte: perm + cat filtern, Menü danach schließen
+                document.querySelectorAll('nav .subPoint').forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        e.stopPropagation(); // <- HIER VERHINDERN WIR DAS BUBBLING
+
+                        const perm = item.getAttribute('data-perm');
+                        const cat = item.getAttribute('data-cat');
+                        buildTable(perm, cat);
+                        toggleMenu(); // Menü schließen
+                    });
+                });
+            });
+        
+            // Navigation öffnen/schließen
+            const navButton = document.querySelector('.menuButton');
+            const menu = document.querySelector('nav');
+            let isMenuOpened = false;
+        
+            function toggleMenu() {
+                if (!isMenuOpened) {
+                    menu.classList.add('active');
+                } else {
+                    menu.classList.remove('active');
+                }
+                document.querySelectorAll('nav .subMenu.active').forEach(subMenu => {
+                    subMenu.classList.remove('active');
+                });
+                isMenuOpened = !isMenuOpened;
+            }
+            navButton.addEventListener('click', () => { toggleMenu(); });
+        
+            document.addEventListener('click', (e) => {
+                if (isMenuOpened && !menu.contains(e.target) && !navButton.contains(e.target)) {
+                    toggleMenu();
+                }
+            });
+        </script>
+        <script> //PAGELOADER
+            window.addEventListener('load', () => {
+                const loader = document.getElementById('loader');
+                loader.style.opacity = '0';
+                setTimeout(() => { loader.style.display = 'none'; }, 500);
+            });
+        </script>
+    </body>
+</html>

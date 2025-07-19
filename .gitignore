@@ -1,0 +1,15 @@
+node_modules/
+.vs/
+.env
+
+# Ignore all content in /external recursively
+external/apixoffiziell/*
+external/pixelundpils/*
+
+# Do NOT ignore the 'apixoffiziell/csharp_codes_cphinline' folder and its content
+!external/apixoffiziell/csharp_codes_cphinline/
+!external/apixoffiziell/csharp_codes_cphinline/**
+
+# Do NOT ignore the 'pixelundpils/csharp_codes_cphinline' folder and its content
+!external/pixelundpils/csharp_codes_cphinline/
+!external/pixelundpils/csharp_codes_cphinline/**

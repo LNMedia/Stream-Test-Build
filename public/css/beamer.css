@@ -1,0 +1,288 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin:0;
+    padding: 0;
+    background: linear-gradient(to bottom, #000000, #333333);
+}
+body.apixoffiziell {
+    font-family: 'Rajdhani', sans-serif;
+}
+body.pixelundpils {
+    font-family: 'Karla', sans-serif;
+}
+/* BACKGROUND CONTAINER */
+.backgroundContainer {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+.backgroundContainer::before {
+    content: "";
+    position: absolute;
+    top: -1%;
+    left: -1%;
+    width: 102%;
+    height: 102%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: blur(5px) brightness(0.5);
+}
+.backgroundContainer.apixoffiziell::before {
+    background-image: url('/img/backgrounds/wallpaper_apix.png');
+}
+.backgroundContainer.pixelundpils::before {
+    background-image: url('/img/backgrounds/wallpaper_pp.png');
+}
+/* NAMEPLATE CONTAINER */
+.namePlateContainer {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+}
+.namePlateContainer,
+.namePlate {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11vw;
+    color: white;
+    font-family: 'Black Ops One', sans-serif;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+.namePlate {
+    animation: rotateText 5s linear infinite;
+}
+.namePlateContainer {
+    position: relative;
+}
+.namePlateContainer.fullScreen {
+    animation: moveBack 1s ease-in-out forwards;
+}
+.namePlateContainer.notFullScreen {
+    animation: moveUp 1s ease-in-out forwards;
+}
+.namePlate.apixoffiziell::before {
+    content: "APiXoffiziell";
+    text-shadow: 2px 2px 4px rgba(150, 0, 0, 0.5),
+                0 0 10px rgba(150, 0, 0, 0.5),
+                0 0 20px rgba(150, 0, 0, 0.5);
+}
+.namePlate.pixelundpils::before {
+    content: "Pixel & Pils";
+    text-shadow: 2px 2px 4px rgba(250, 250, 250, 0.5),
+                0 0 10px rgba(250, 250, 250, 0.5),
+                0 0 20px rgba(250, 250, 250, 0.5);
+}
+@keyframes rotateText {
+    0%,100% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(90deg);
+    }
+}
+@keyframes moveUp {
+    from { transform: translateY(0%); }
+    to { transform: translateY(-40%); }
+}
+@keyframes moveBack {
+    from { transform: translateY(-40%); }
+    to { transform: translateY(0%); }
+}
+/* MESSAGE CONTAINER */
+.beamerBigMessageContainer {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    gap: 25px;
+    width: 90%;
+    height: 50%;
+    bottom: 25px;
+    left: 50%;
+    transform: translate(-50%);
+    color: white;
+    transition: height 0.3s ease;
+}
+.beamerBigMessageContainer.hidden {
+    height: 0;
+}
+.beamerBigMessageContainer .beamerProfilePicture {
+    position: relative;
+    left: 0;
+    height: 60%;
+    top: 50%;
+    transform: translate(0,-50%);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(255,255,255,0.3);
+}
+.beamerBigMessageContainer .beamerBigMessageRightContainer {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 2em;
+    gap: 5px;
+}
+.beamerBigMessageContainer .chatMessageInfo {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+}
+.beamerBigMessageContainer .beamerUserName,
+.beamerBigMessageContainer .beamerTimeStamp {
+    font-size: 1.2em;
+    text-wrap: wrap;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+}
+.beamerBigMessageContainer .beamerTimeStamp {
+    color: #666;
+    font-weight: bold;
+}
+.beamerBigMessageContainer .beamerMessageContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-wrap: wrap;
+    font-size: 1.5em;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 0;
+    padding: 0;
+}
+/* ALERT CONTAINER */
+.beamerAlertsContainer {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    top: 10px;
+    left: 10px;
+    gap: 25px;
+    width: 99.8%;
+    height: 99.3%;
+    color: white;
+    transition: height 0.2s ease;
+}
+.beamerAlertsContainer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px) brightness(0.3);
+}
+.beamerAlertsContainer.hidden {
+    height: 0;
+}
+.beamerAlertsContainer:NOT(.hidden) .beamerAlertType {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    font-size: 5em;
+    font-family: 'Black Ops One', sans-serif;
+    transform: rotateY(0deg) scale(0);
+    text-shadow: 2px 2px 4px rgba(250, 250, 250, 0.5),
+                0 0 10px rgba(250, 250, 250, 0.5),
+                0 0 20px rgba(250, 250, 250, 0.5);
+    text-transform: uppercase;
+    text-align: center;
+    animation: alertHeaderJump .5s ease-in-out forwards;
+}
+.beamerAlertsContainer .alertContainer {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    gap: 50px;
+    width: 90%;
+    color: white;
+}
+.beamerAlertsContainer .beamerProfilePicture {
+    position: relative;
+    left: 0;
+    height: 70%;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(255,255,255,0.3);
+}
+.beamerAlertsContainer .beamerUserName {
+    position: relative;
+    font-size: 4em;
+    text-wrap: wrap;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+    text-shadow: 2px 2px 4px rgba(250, 250, 250, 0.5),
+                0 0 10px rgba(250, 250, 250, 0.5),
+                0 0 20px rgba(250, 250, 250, 0.5);
+}
+.beamerAlertsContainer .rowSubInfo {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 25px;
+    font-size: 2em;
+    color: #666;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0;
+}
+.beamerAlertsContainer .beamerAlertSubMessage {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-wrap: wrap;
+    font-size: 1.5em;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 0;
+    padding: 0;
+}
+@keyframes alertHeaderJump {
+    0% {
+        transform: rotateY(0deg) scale(0);
+    }
+    50% {
+        transform: rotateY(90deg) scale(1.2);
+    }
+    100% {
+        transform: rotateY(0deg) scale(1);
+    }
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <title><%= title %></title>
+        <link rel="stylesheet" href="/css/obs.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Rajdhani:wght@400;700&family=Freckle+Face&family=Karla:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body class="apixoffiziell">
+        <!-- STREAM EVENT OVERLAYS -->
+        <div class="overlayContainer displayNone" role="modal" aria-label="Overlay">
+            <div class="backgroundContainer empty"></div>
+            <div class="overlayColumn">
+                <div class="namePlateContainer"><p class="namePlate"></p></div>
+                <div class="overlayRow">
+                    <div class="stateNameContainer"><p class="stateName"></p></div>
+                    <div class="countDownContainer"><p class="countDown"></p></div>
+                </div>
+                <div class="gameShow">
+                    <p class="todayThema">Heute im Angebot:</p>
+                    <div class="gameImage"></div>
+                    <div class="gameName"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- WERBEOVERLAY "STREAMBOOST" -->
+        <iframe src="https://api.streamboost.de/api/endpoint/43BF8F2F52308E4C44186492"
+                frameborder="0"
+                class="streamBoost"
+                width="300"
+                height="250"
+                loading="lazy"
+                scrolling="no"
+                allowfullscreen="false">
+        </iframe>
+        <div class="musicShowCase">
+            <div class="wishList"></div>
+            <div class="activeSong">
+                <div class="songInfo">
+                    <div id="songName"></div>
+                    <div id="songArtist"></div>
+                    <div class="albumName"></div>
+                </div>
+                <div class="cdOverlay"></div>
+            </div>
+        </div>
+        <div class="chatOverlay">
+            <div class="chatHeader">Chat</div>
+            <div class="chatBox"></div>
+        </div>
+
+        <!-- ALERTS -->
+        <div class="alertMainContainer">
+            <h2 class="alertHeader"></h2>
+            <div class="alertContainer">
+                <img src="" alt="" class="userImage">
+                <div class="alertUserData">
+                    <h3 class="userName"></h3>
+                    <ul class="alertData"></ul>
+                </div>
+                <p class="timeStamp"></p>
+            </div>
+        </div>
+
+        <!-- APIXOFFIZIELL -->
+        <div class="overlayAPIX">
+            <div class="jcHeader">
+                <div class="logoContainer">
+                    <img src="/img/logos/apixoffiziell.png" alt="">
+                    <img src="/img/logos/pixelundpils.png" alt="">
+                    <img src="/img/logos/andifenrir.png" alt="">
+                </div>
+            </div>
+            <div class="overlayAPIXJC">
+                <div class="jcGreenScreen"></div>
+            </div>
+            <div class="overlayAPIXGMG">
+                <div class="gmgGameGreenScreen"></div>
+            </div>
+        </div>
+        
+        <!-- PIXELUNDPILS -->
+        <div class="overlayPP">
+            <div class="overlayPPPC"></div>
+            <div class="overlayPPGMG"></div>
+        </div>
+        
+        <script src="/js/websocket.js"></script>
+        <script src="/js/functions.js"></script>
+    </body>
+</html>
